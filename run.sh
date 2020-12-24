@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -eo pipefail
 
 do_up(){
     #vagrant up
