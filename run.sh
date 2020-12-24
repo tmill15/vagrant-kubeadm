@@ -12,7 +12,7 @@ do_up(){
     vagrant status | awk 'BEGIN{ tog=0; } /^$/{ tog=!tog; } /./ { if(tog){print $1} }' | xargs -P3 -I {} vagrant up {}
 
     node1_ip=$(vagrant ssh node1 -- hostname -I | awk '{ print $2}')
-    vagrant ssh node1 -- sudo kubeadm init --pod-network-cidr=10.100.0.0/16 --apiserver-cert-extra-sans "$node1_ip" --apiserver-advertise-address $node1_ip --node-name node1 
+    vagrant ssh node1 -- sudo kubeadm init --pod-network-cidr=10.100.0.0/16 --apiserver-cert-extra-sans "$node1_ip" --apiserver-advertise-address "$node1_ip" --node-name node1 
     #| tee join.txt
     #join_cmd=$(sed -ne "/kubeadm join/,$ p" join.txt | tr '\n' ' ' | sed 's/\\//g')
     join_cmd=$(vagrant ssh node1 -- sudo kubeadm token create --print-join-command)
