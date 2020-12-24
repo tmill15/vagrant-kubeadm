@@ -77,6 +77,16 @@ Where:
 * down: destroy the cluster and remove associated files
 
 
+The cluster configfile will be created at: ~/.kube/config-kubeadm.
+
+It'll be exported to the KUBECONFIG variable automatically.
+To persist between reboots, add to your bashrc file:
+```sh
+  export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config-kubeadm
+```
+
+
+
 
 <!-- CONTRIBUTING -->
 ## Contributing
