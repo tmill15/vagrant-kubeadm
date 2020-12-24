@@ -7,9 +7,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-
   <h3 align="center">Vagrant kubeadm</h3>
-
   <p align="center">
     Create a simple kubeadm cluster with vagrant
     <br />
