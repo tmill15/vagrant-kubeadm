@@ -29,7 +29,11 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#using-the-ingress-component">Using the ingress component</a></li>
+    <ul>
+      <li>
+        <a href="#using-the-ingress-component">Using the ingress component</a>
+      </li>
+    </ul>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -87,7 +91,7 @@ To add the configuration to your KUBECONFIG variable, run:
   export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config-kubeadm
 ```
 
-## Using the ingress component
+### Using the ingress component
 
 To use the ingress component, install dnsmasq on your machine and redirect the local domain to node2 or node3.  
 Here's some tutorials to install and configure dnsmasq:
