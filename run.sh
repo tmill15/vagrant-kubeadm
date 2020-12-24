@@ -27,7 +27,7 @@ do_up(){
     curl -fsSL https://docs.projectcalico.org/manifests/custom-resources.yaml | sed 's/192.168.0.0/10.100.0.0/g' | kubectl --context kubernetes-admin@kubernetes create -f -
      
 
-    echo "To persist the configuration between reboots, run:"
+    echo "To add the configuration to your KUBECONFIG variable, run:"
     echo 'export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config-kubeadm'
 }
 
