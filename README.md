@@ -55,6 +55,8 @@ To get a local copy up and running follow these steps.
 * Vagrant
 * Bash
 * Kubectl (to access the cluster)
+* Helm (to install the nginx-ingress)
+* DNSmasq (to access services via ingress)
 
 
 ### Installation
@@ -82,6 +84,21 @@ The cluster configfile will be created at: ~/.kube/config-kubeadm.
 To add the configuration to your KUBECONFIG variable, run:
 ```sh
   export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config-kubeadm
+```
+
+## Using the ingress component
+
+To use the ingress component, install dnsmasq on your machine and redirect the local domain to node2 or node3.  
+Here's some tutorials to install and configure dnsmasq:
+
+* [MacOS](https://medium.com/@kharysharpe/automatic-local-domains-setting-up-dnsmasq-for-macos-high-sierra-using-homebrew-caf767157e43)
+* [Linux](https://www.tecmint.com/setup-a-dns-dhcp-server-using-dnsmasq-on-centos-rhel/)
+
+After the cluster is up, the script will show how to make a redirect, something like this:
+
+```
+  To use the ingress component, add this to your dnsmasq configuration:
+  address=/.lab/192.168.56.202
 ```
 
 

@@ -25,10 +25,20 @@ do_up(){
     export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config-kubeadm
     kubectl --context kubernetes-admin@kubernetes create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
     curl -fsSL https://docs.projectcalico.org/manifests/custom-resources.yaml | sed 's/192.168.0.0/10.100.0.0/g' | kubectl --context kubernetes-admin@kubernetes create -f -
-     
 
+    kubectl --context kubernetes-admin@kubernetes create namespace ingress
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+    helm repo update
+    helm --kube-context kubernetes-admin@kubernetes -n ingress install ingress ingress-nginx/ingress-nginx --set controller.kind=DaemonSet --set controller.hostNetwork=true 
+     
+    printf '\n\n\n'
     echo "To add the configuration to your KUBECONFIG variable, run:"
     echo 'export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config-kubeadm'
+    printf '\n\n\n'
+
+    node2_ip=$(vagrant ssh node2 -- hostname -I | awk '{ print $2}')
+    echo "To use the ingress component, add this to your dnsmasq configuration:"
+    echo "address=/.<domain of your choice>/$node2_ip"
 }
 
 do_down (){
